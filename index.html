@@ -3,68 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SBV3-MLB</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+background:#000;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:#fff;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
 }
 
 .box{
-    text-align:center;
-    border:3px solid #00bfff;
-    padding:40px;
-    border-radius:15px;
-    box-shadow:0 0 20px #00bfff;
+position:relative;
+z-index:2;
+text-align:center;
+padding:45px;
+border:3px solid #00bfff;
+border-radius:18px;
+background:rgba(0,0,0,.45);
+box-shadow:
+0 0 10px #00bfff,
+0 0 25px #00bfff,
+0 0 45px #00bfff;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{
+box-shadow:0 0 10px #00bfff,0 0 25px #00bfff;
+}
+to{
+box-shadow:0 0 20px #00bfff,0 0 50px #00bfff;
+}
 }
 
 h1{
-    color:white;
-    font-size:45px;
-    text-shadow:0 0 10px white,0 0 20px cyan;
-    margin-bottom:30px;
+font-size:58px;
+color:#fff;
+text-shadow:
+0 0 8px #fff,
+0 0 15px #fff,
+0 0 30px #00bfff;
+margin-bottom:15px;
 }
 
-.join{
-    display:inline-block;
-    padding:15px 40px;
-    font-size:22px;
-    color:white;
-    text-decoration:none;
-    border:2px solid #00bfff;
-    border-radius:10px;
-    box-shadow:0 0 15px #00bfff;
-    transition:.3s;
+p{
+font-size:22px;
+text-shadow:0 0 10px white;
+margin-bottom:35px;
 }
 
-.join:hover{
-    background:#00bfff;
-    color:black;
-    box-shadow:0 0 30px #00bfff;
+a{
+display:inline-block;
+padding:18px 45px;
+font-size:24px;
+font-weight:bold;
+text-decoration:none;
+color:white;
+border:2px solid #00bfff;
+border-radius:12px;
+box-shadow:
+0 0 12px #00bfff,
+0 0 30px #00bfff;
+transition:.3s;
+}
+
+a:hover{
+background:#00bfff;
+color:#000;
+box-shadow:
+0 0 25px #00bfff,
+0 0 60px #00bfff;
+transform:scale(1.08);
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-    <h1>SBV3-MLB</h1>
+<canvas id="snow"></canvas>
 
-    <a class="join" href="https://discord.gg/GU9Kav9hq">
-        Join SERVER
-    </a>
+<div class="box">
+
+<h1>SBV3-MLB</h1>
+
+<p>ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ SBV3 MLB</p>
+
+<a href="https://discord.gg/GU9Kav9hq" target="_blank">
+JOIN SERVER
+</a>
+
 </div>
+
+<script>
+const canvas=document.getElementById("snow");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resize();
+window.onresize=resize;
+
+const snow=[];
+
+for(let i=0;i<180;i++){
+snow.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+d:Math.random()*1.5+0.5
+});
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+ctx.beginPath();
+
+for(let i=0;i<snow.length;i++){
+
+const s=snow[i];
+
+ctx.moveTo(s.x,s.y);
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2,true);
+
+}
+
+ctx.fill();
+
+move();
+
+requestAnimationFrame(draw);
+
+}
+
+function move(){
+
+for(let i=0;i<snow.length;i++){
+
+const s=snow[i];
+
+s.y+=s.d;
+s.x+=Math.sin(s.y*0.01);
+
+if(s.y>canvas.height){
+
+s.y=-5;
+s.x=Math.random()*canvas.width;
+
+}
+
+}
+
+}
+
+draw();
+</script>
 
 </body>
 </html>
