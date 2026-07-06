@@ -3,53 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Discord</title>
+<title>SBV3-MLB</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
 body{
-background:#487de7;
-color:white;
-font-family:Arial,sans-serif;
-text-align:center;
-padding:40px;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
+
 .box{
-max-width:400px;
-margin:auto;
-background:#e81416;
-padding:25px;
-border-radius:15px;
+    text-align:center;
+    border:3px solid #00bfff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 0 20px #00bfff;
 }
-img{
-width:120px;
-height:120px;
-border-radius:50%;
+
+h1{
+    color:white;
+    font-size:45px;
+    text-shadow:0 0 10px white,0 0 20px cyan;
+    margin-bottom:30px;
 }
-a{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#5865F2;
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
+
+.join{
+    display:inline-block;
+    padding:15px 40px;
+    font-size:22px;
+    color:white;
+    text-decoration:none;
+    border:2px solid #00bfff;
+    border-radius:10px;
+    box-shadow:0 0 15px #00bfff;
+    transition:.3s;
+}
+
+.join:hover{
+    background:#00bfff;
+    color:black;
+    box-shadow:0 0 30px #00bfff;
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="box">
-<img src="https://cdn.discordapp.com/attachments/1521537450604888136/1521881201928044654/file_00000000dc9c7209875c6e06d70f0d15.png">
-<h1>SBV3-MLB</h1>
-<p>ยินดีต้อนรับสู่เซิร์ฟเวอร์ SBV3 MLB ของเรา</p>
+    <h1>SBV3-MLB</h1>
 
-<a href="https://discord.gg/GU9Kav9hq">
-JOIN SERVER
-</a>
-
+    <a class="join" href="https://discord.gg/GU9Kav9hq">
+        Join SERVER
+    </a>
 </div>
 
 </body>
