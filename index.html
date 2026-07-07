@@ -144,3 +144,64 @@ box-shadow:
 transform:scale(1.08);
 }
 </style>
+
+  </head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+<div class="box">
+
+<h1>SBV3-MLB</h1>
+
+<p>ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ SBV3 MLB</p>
+
+<a href="https://discord.gg/ใส่ลิงก์ของคุณ" target="_blank">
+JOIN SERVER
+</a>
+
+</div>
+
+<script>
+
+const canvas=document.getElementById("snow");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener("resize",()=>{
+
+resize();
+init();
+
+});
+
+const letters="010101010101010101010101010101";
+const fontSize=18;
+
+let columns;
+let drops;
+
+function init(){
+
+columns=Math.floor(canvas.width/fontSize);
+
+drops=[];
+
+for(let i=0;i<columns;i++){
+
+drops[i]=Math.random()*-100;
+
+}
+
+}
+
+init();
