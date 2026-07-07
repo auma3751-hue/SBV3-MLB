@@ -155,10 +155,10 @@ transform:scale(1.08);
 <h1>SBV3 MLB</h1>
 
 <p>ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ SBV3 MLB</p>
-<p>สายมืดเข้ามาเลย จิ้มด้านล่าง</p>
+<p>[สายมืดเข้ามาเลย]</p>
 
 <a href="https://discord.gg/GU9Kav9hq" target="_blank">
-JOIN SERVER
+JOIN - SERVER
 </a>
 
 </div>
@@ -185,7 +185,7 @@ init();
 });
 
 const letters="010101010101010101010101010101";
-const fontSize=18;
+const fontSize=19;
 
 let columns;
 let drops;
@@ -207,7 +207,7 @@ drops[i]=Math.random()*-100;
 init();
 function draw(){
 
-ctx.fillStyle="rgba(0,0,0,0,8)";
+ctx.fillStyle="rgba(0,0,0,0.08)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
 ctx.fillStyle="#66ff66";
@@ -241,6 +241,7 @@ requestAnimationFrame(draw);
 }
 
 draw();
+
 </script>
 
 </body>
