@@ -31,29 +31,52 @@ left:0;
 width:100%;
 height:100%;
 z-index:0;
+opacity:.6;
 }
 
 .box{
 position:relative;
-z-index:2;
+z-index:5;
 text-align:center;
 padding:45px;
-border:3px solid #00bfff;
 border-radius:18px;
-background:rgba(0,0,0,.45);
-box-shadow:
-0 0 10px #00bfff,
-0 0 25px #00bfff,
-0 0 45px #00bfff;
-animation:glow 2s infinite alternate;
+background:rgba(0,0,0,.75);
+overflow:hidden;
 }
 
-@keyframes glow{
-from{
-box-shadow:0 0 10px #00bfff,0 0 25px #00bfff;
+.box::before{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+width:220%;
+height:220%;
+background:conic-gradient(
+transparent,
+transparent,
+#00bfff,
+#66e0ff,
+#00bfff,
+transparent
+);
+transform:translate(-50%,-50%);
+animation:borderRotate 5s linear infinite;
+filter:blur(6px);
+z-index:-2;
 }
-to{
-box-shadow:0 0 20px #00bfff,0 0 50px #00bfff;
+
+.box::after{
+content:"";
+position:absolute;
+inset:3px;
+background:#000;
+border-radius:16px;
+z-index:-1;
+}
+
+@keyframes borderRotate{
+100%{
+transform:translate(-50%,-50%) rotate(360deg);
 }
 }
 
@@ -62,30 +85,54 @@ font-size:58px;
 color:#fff;
 text-shadow:
 0 0 8px #fff,
-0 0 15px #fff,
-0 0 30px #00bfff;
+0 0 18px #fff,
+0 0 35px #00bfff;
 margin-bottom:15px;
 }
 
 p{
 font-size:22px;
-text-shadow:0 0 10px white;
 margin-bottom:35px;
+text-shadow:0 0 12px #fff;
 }
 
 a{
+position:relative;
 display:inline-block;
-padding:18px 45px;
+padding:18px 50px;
 font-size:24px;
 font-weight:bold;
+color:#fff;
 text-decoration:none;
-color:white;
 border:2px solid #00bfff;
 border-radius:12px;
+overflow:hidden;
 box-shadow:
-0 0 12px #00bfff,
+0 0 15px #00bfff,
 0 0 30px #00bfff;
 transition:.3s;
+}
+
+a::before{
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:60%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.9),
+transparent
+);
+transform:skewX(-20deg);
+animation:shine 2s linear infinite;
+}
+
+@keyframes shine{
+0%{left:-120%;}
+100%{left:150%;}
 }
 
 a:hover{
@@ -97,92 +144,3 @@ box-shadow:
 transform:scale(1.08);
 }
 </style>
-</head>
-
-<body>
-
-<canvas id="snow"></canvas>
-
-<div class="box">
-
-<h1>𝑺𝑩𝑽3 𝑴𝑳𝑩</h1>
-
-<p>ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ 𝑺𝑩𝑽3 𝑴𝑳𝑩</p>
-
-<a href="https://discord.gg/GU9Kav9hq" target="_blank">
-JOIN SERVER
-</a>
-
-</div>
-
-<script>
-const canvas=document.getElementById("snow");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-}
-resize();
-window.onresize=resize;
-
-const snow=[];
-
-for(let i=0;i<180;i++){
-snow.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*3+1,
-d:Math.random()*1.5+0.5
-});
-}
-
-function draw(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="white";
-ctx.beginPath();
-
-for(let i=0;i<snow.length;i++){
-
-const s=snow[i];
-
-ctx.moveTo(s.x,s.y);
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2,true);
-
-}
-
-ctx.fill();
-
-move();
-
-requestAnimationFrame(draw);
-
-}
-
-function move(){
-
-for(let i=0;i<snow.length;i++){
-
-const s=snow[i];
-
-s.y+=s.d;
-s.x+=Math.sin(s.y*0.01);
-
-if(s.y>canvas.height){
-
-s.y=-5;
-s.x=Math.random()*canvas.width;
-
-}
-
-}
-
-}
-
-draw();
-</script>
-
-</body>
-</html>
