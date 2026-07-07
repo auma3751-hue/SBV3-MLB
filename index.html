@@ -210,11 +210,11 @@ function draw(){
 ctx.fillStyle="rgba(#000)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="#66ff66";
+ctx.fillStyle="#00ff66";
 ctx.shadowColor="#00ff66";
-ctx.shadowBlur=10;
+ctx.shadowBlur=4;
+ctx.globalAlpha=0.9;
 ctx.font=fontSize+"px monospace";
-
 for(let i=0;i<drops.length;i++){
 
 const text=letters[Math.floor(Math.random()*letters.length)];
